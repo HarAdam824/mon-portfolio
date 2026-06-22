@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adam Harrouchi | Portfolio High-Tech</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Space+Grotesk:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ==========================================================================
+           VARIABLES DES THÈMES (Clair & Sombre)
+           ========================================================================== */
+        
+        /* THÈME CLAIR (Futuriste "Glacier / Labo Tech") */
+        :root {
+            --bg-base: #F0F4F8; 
+            --bg-card: rgba(255, 255, 255, 0.7); 
+            --border-color: rgba(0, 195, 255, 0.3);
+            --border-hover: #00A3FF;
+            
+            --text-primary: #0F172A; 
+            --text-secondary: #475569;
+            
+            --accent-cyan: #0088FF; 
+            --accent-purple: #6366F1;
+            --accent-glow: rgba(0, 136, 255, 0.15);
+            
+            --gradient-text: linear-gradient(90deg, #0088FF, #6366F1);
+            
+            --nav-bg: rgba(240, 244, 248, 0.85);
+            --modal-bg: #FFFFFF;
+            --modal-overlay: rgba(15, 23, 42, 0.4);
+            
+            --grid-color: rgba(0, 136, 255, 0.05);
+            --shadow-card: 0 10px 30px rgba(0, 136, 255, 0.05);
+        }
+
+        /* THÈME SOMBRE (Cyber-Slate & Néon) */
+        body.dark {
+            --bg-base: #131722; 
+            --bg-card: rgba(26, 32, 44, 0.7); 
+            --border-color: rgba(0, 240, 255, 0.15);
+            --border-hover: #00f0ff;
+            
+            --text-primary: #F8FAFC;
+            --text-secondary: #94A3B8;
+            
+            --accent-cyan: #00f0ff; 
+            --accent-purple: #8a2be2;
+            --accent-glow: rgba(0, 240, 255, 0.2);
+            
+            --gradient-text: linear-gradient(90deg, #00f0ff, #8a2be2);
+            
+            --nav-bg: rgba(19, 23, 34, 0.85);
+            --modal-bg: #1A202C;
+            --modal-overlay: rgba(9, 14, 23, 0.85);
+            
+            --grid-color: rgba(255, 255, 255, 0.03);
+            --shadow-card: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-base);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background-color 0.4s ease, color 0.4s ease;
+            
+            background-image: 
+                linear-gradient(var(--grid-color) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+            background-size: 30px 30px;
+            background-position: center center;
+        }
+
+        h1, h2, h3, h4, h5, .status-badge { font-family: 'Space Grotesk', sans-serif; }
+
+        /* Cacher les citations pour l'utilisateur final */
+        .cite-tag { display: none; }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-base); }
+        ::-webkit-scrollbar-thumb { background: #64748b; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent-cyan); }
+
+        /* ==========================================================================
+           HEADER & LOGO
+           ========================================================================== */
+        header {
+            position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+            background: var(--nav-bg); backdrop-filter: blur(12px);
+            padding: 10px 25px; border-radius: 50px; border: 1px solid var(--border-color);
+            z-index: 1000; display: flex; align-items: center; justify-content: space-between;
+            width: 95%; max-width: 1100px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
+        }
+        body.dark header { box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); }
+
+        .logo-ah {
+            font-family: 'Dancing Script', cursive; font-size: 2.2rem; font-weight: 700;
+            background: var(--gradient-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            text-decoration: none; transition: transform 0.3s ease, filter 0.3s ease;
+            padding: 0 10px; display: inline-block; text-shadow: 0 0 10px var(--accent-glow);
+        }
+        .logo-ah:hover { transform: scale(1.1) rotate(-3deg); filter: brightness(1.3); }
+
+        .nav-links { display: flex; gap: 20px; align-items: center;}
+        .nav-links a {
+            color: var(--text-primary); text-decoration: none; font-size: 0.85rem;
+            font-weight: 600; transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 1px;
+            font-family: 'Space Grotesk', sans-serif; opacity: 0.8;
+        }
+        .nav-links a:hover { color: var(--accent-cyan); opacity: 1; text-shadow: 0 0 8px var(--accent-glow); }
+
+        #theme-btn {
+            background: var(--bg-card); border: 1px solid var(--border-color);
+            color: var(--text-primary); font-size: 1.1rem; cursor: pointer;
+            width: 36px; height: 36px; border-radius: 50%; display: flex;
+            align-items: center; justify-content: center; transition: all 0.3s ease;
+            box-shadow: 0 2px 10px var(--accent-glow);
+        }
+        #theme-btn:hover { transform: scale(1.1); border-color: var(--accent-cyan); }
+
+        /* ==========================================================================
+           LAYOUT & TITRES
+           ========================================================================== */
+        .container { max-width: 1100px; margin: 0 auto; padding: 130px 20px 60px; }
+        .section-title {
+            font-size: 2.2rem; font-weight: 700; margin-bottom: 2.5rem; text-align: center;
+            background: var(--gradient-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            text-transform: uppercase; letter-spacing: 2px;
+        }
+
+        /* ==========================================================================
+           HERO SECTION
+           ========================================================================== */
+        .hero {
+            display: flex; align-items: center; gap: 50px; margin-bottom: 80px;
+            background: var(--bg-card); backdrop-filter: blur(10px); padding: 40px;
+            border-radius: 16px; border: 1px solid var(--border-color);
+            box-shadow: inset 0 0 20px var(--accent-glow), var(--shadow-card);
+            position: relative; overflow: hidden; transition: all 0.4s ease;
+        }
+        .hero::before {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle at 50% 50%, var(--accent-glow), transparent 60%);
+            opacity: 0.5; pointer-events: none;
+        }
+
+        .hero-img-container {
+            flex: 0 0 250px; height: 350px; border-radius: 12px; overflow: hidden;
+            border: 2px solid var(--accent-cyan); box-shadow: 0 0 20px var(--accent-glow);
+            position: relative; z-index: 1;
+        }
+        .hero-img-container img { width: 100%; height: 100%; object-fit: cover; }
+
+        .hero-content { flex: 1; z-index: 1;}
+        .status-badge {
+            display: inline-block; background: rgba(0, 240, 255, 0.1); color: var(--accent-cyan);
+            padding: 6px 15px; border-radius: 4px; font-size: 0.8rem; font-weight: 600;
+            border: 1px solid var(--accent-cyan); margin-bottom: 20px; text-transform: uppercase;
+            letter-spacing: 1px; box-shadow: 0 0 10px var(--accent-glow);
+        }
+        .hero-content h1 {
+            font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 700; line-height: 1.1;
+            margin-bottom: 15px; color: var(--text-primary); text-transform: uppercase;
+        }
+        .hero-content p {
+            font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 12px;
+            text-align: justify;
+        }
+        .hero-content strong { color: var(--text-primary); font-weight: 600; }
+
+        /* ==========================================================================
+           GRILLES PROJETS
+           ========================================================================== */
+        .projects-grid-3, .projects-grid-2 { display: grid; gap: 25px; margin-bottom: 60px; }
+        .projects-grid-3 { grid-template-columns: repeat(3, 1fr); }
+        .projects-grid-2 { grid-template-columns: repeat(2, 1fr); }
+
+        .project-card {
+            background: var(--bg-card); border: 1px solid var(--border-color);
+            border-radius: 12px; overflow: hidden; cursor: pointer; position: relative;
+            transition: all 0.3s ease; display: flex; flex-direction: column;
+            backdrop-filter: blur(10px); box-shadow: var(--shadow-card);
+        }
+        .project-card:hover {
+            transform: translateY(-5px); border-color: var(--accent-cyan);
+            box-shadow: 0 10px 30px var(--accent-glow);
+        }
+
+        .project-img { width: 100%; height: 180px; object-fit: cover; border-bottom: 1px solid var(--border-color); filter: grayscale(40%) contrast(1.1); transition: filter 0.3s ease;}
+        body.dark .project-img { filter: grayscale(50%) contrast(1.2); }
+        .projects-grid-2 .project-img { height: 240px; }
+        .project-card:hover .project-img { filter: grayscale(0%) contrast(1.1); }
+
+        .project-info { padding: 20px; text-align: center; flex-grow: 1; display: flex; flex-direction: column; justify-content: center; }
+        .project-info h3 { font-size: 1.1rem; color: var(--text-primary); text-transform: uppercase; font-weight: 700; font-family: 'Space Grotesk', sans-serif;}
+        .projects-grid-2 .project-info h3 { font-size: 1.2rem; }
+        
+        .click-hint {
+            font-size: 0.75rem; color: var(--accent-cyan); margin-top: 10px; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 2px; opacity: 0; transform: translateY(10px); transition: all 0.3s ease;
+        }
+        .project-card:hover .click-hint { opacity: 1; transform: translateY(0); }
+
+        /* ==========================================================================
+           SECTION STAGE (MISE EN AVANT)
+           ========================================================================== */
+        .stage-card {
+            background: var(--bg-card); border: 1px solid var(--accent-cyan); border-radius: 16px; padding: 40px;
+            margin-bottom: 80px; cursor: pointer; transition: all 0.3s ease;
+            display: flex; align-items: center; gap: 40px; position: relative; overflow: hidden;
+            box-shadow: inset 0 0 30px var(--accent-glow), var(--shadow-card); backdrop-filter: blur(10px);
+        }
+        .stage-card::after {
+            content: ''; position: absolute; top: 0; right: 0; width: 150px; height: 100%;
+            background: linear-gradient(90deg, transparent, var(--accent-glow)); pointer-events: none;
+        }
+        .stage-card:hover { transform: scale(1.02); box-shadow: 0 0 40px var(--accent-glow); }
+        
+        .stage-icon {
+            flex: 0 0 90px; height: 90px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; font-size: 2.5rem;
+            border: 2px solid var(--accent-cyan); box-shadow: 0 0 15px var(--accent-glow);
+            background: var(--bg-base); z-index: 2;
+        }
+        .stage-content { flex: 1; z-index: 2;}
+        .stage-content h3 { font-size: 1.5rem; font-weight: 700; color: var(--text-primary); margin-bottom: 8px; text-transform: uppercase; }
+        .stage-content h4 { font-size: 1.05rem; color: var(--accent-cyan); font-weight: 500; margin-bottom: 12px; font-family: 'Inter', sans-serif;}
+        .stage-content p { color: var(--text-secondary); font-size: 0.95rem; }
+        .stage-arrow { font-size: 2rem; color: var(--accent-cyan); transition: transform 0.3s; z-index: 2;}
+        .stage-card:hover .stage-arrow { transform: translateX(10px); }
+
+        /* ==========================================================================
+           PARCOURS & EXTRA
+           ========================================================================== */
+        .split-section { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 80px; }
+
+        .timeline-card {
+            background: var(--bg-card); border: 1px solid var(--border-color);
+            border-radius: 12px; padding: 30px; margin-bottom: 20px;
+            transition: all 0.3s ease; backdrop-filter: blur(10px); box-shadow: var(--shadow-card);
+        }
+        .timeline-card:hover { border-color: var(--accent-cyan); box-shadow: 0 5px 20px var(--accent-glow); }
+        
+        .date-badge {
+            display: inline-block; background: rgba(99, 102, 241, 0.1); color: var(--accent-purple);
+            padding: 4px 12px; border-radius: 4px; font-size: 0.75rem; font-weight: 600;
+            margin-bottom: 15px; border: 1px solid rgba(99, 102, 241, 0.3); font-family: 'Space Grotesk', sans-serif;
+        }
+        .timeline-card h3 { font-size: 1.2rem; color: var(--text-primary); margin-bottom: 5px; text-transform: uppercase;}
+        .timeline-card h4 { font-size: 0.9rem; color: var(--accent-cyan); margin-bottom: 12px; font-family: 'Inter', sans-serif;}
+        .timeline-card p { color: var(--text-secondary); font-size: 0.9rem; text-align: justify;}
+
+        .sport-card { border-left: 4px solid var(--accent-cyan); }
+
+        /* ==========================================================================
+           APTITUDES
+           ========================================================================== */
+        .aptitudes-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 25px; margin-bottom: 80px; }
+        .aptitude-box {
+            background: var(--bg-card); border: 1px solid var(--border-color);
+            border-radius: 12px; padding: 35px; backdrop-filter: blur(10px); box-shadow: var(--shadow-card);
+        }
+        .aptitude-box h3 { font-size: 1.3rem; color: var(--text-primary); margin-bottom: 25px; text-transform: uppercase; text-align: center; border-bottom: 1px solid var(--border-color); padding-bottom: 15px;}
+
+        .skills-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+        .skill-item {
+            display: flex; align-items: center; gap: 8px; padding: 8px 16px; cursor: pointer;
+            background: var(--bg-base); border: 1px solid var(--border-color);
+            border-radius: 4px; text-decoration: none; transition: all 0.3s ease;
+        }
+        .skill-item:hover { border-color: var(--accent-cyan); box-shadow: 0 0 15px var(--accent-glow); transform: translateY(-3px);}
+        .skill-icon { width: 20px; height: 20px; object-fit: contain; }
+        .skill-name { font-size: 0.85rem; font-weight: 500; color: var(--text-primary); font-family: 'Space Grotesk', sans-serif;}
+
+        .lang-list { display: flex; flex-direction: column; gap: 12px; }
+        .lang-item {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 12px 15px; background: var(--bg-base); border: 1px solid var(--border-color);
+            border-radius: 8px;
+        }
+        .lang-name { font-weight: 500; color: var(--text-primary); font-size: 0.9rem; font-family: 'Space Grotesk', sans-serif;}
+        .lang-level { font-size: 0.75rem; font-weight: 600; color: var(--accent-cyan); background: rgba(0, 136, 255, 0.1); padding: 4px 10px; border-radius: 4px; border: 1px solid rgba(0, 136, 255, 0.2);}
+
+        /* ==========================================================================
+           FOOTER (CONTACTS & CV)
+           ========================================================================== */
+        .contact-section {
+            background: linear-gradient(135deg, rgba(0, 136, 255, 0.05), rgba(99, 102, 241, 0.05));
+            border: 1px solid var(--border-color); border-radius: 16px;
+            padding: 60px 20px; text-align: center; margin-bottom: 20px;
+            backdrop-filter: blur(10px); position: relative; overflow: hidden;
+            box-shadow: var(--shadow-card);
+        }
+        .contact-section::before {
+            content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+            width: 50%; height: 2px; background: var(--gradient-text);
+        }
+
+        .contact-section h2 { font-size: 2rem; margin-bottom: 10px; color: var(--text-primary); text-transform: uppercase;}
+        .contact-section p { color: var(--text-secondary); margin-bottom: 30px; }
+        
+        .contact-links { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 40px; }
+        .contact-links a {
+            background: var(--bg-base); color: var(--text-primary); text-decoration: none;
+            padding: 12px 25px; border-radius: 8px; font-weight: 500; border: 1px solid var(--border-color);
+            transition: all 0.3s ease; display: flex; align-items: center; gap: 8px; font-family: 'Space Grotesk', sans-serif;
+        }
+        .contact-links a:hover { border-color: var(--accent-cyan); box-shadow: 0 0 20px var(--accent-glow); color: var(--accent-cyan); transform: translateY(-3px);}
+
+        .cv-button {
+            display: inline-block; background: var(--gradient-text); color: white; text-decoration: none;
+            padding: 15px 40px; border-radius: 4px; font-weight: 700; font-size: 1.1rem;
+            transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 1px; font-family: 'Space Grotesk', sans-serif;
+        }
+        .cv-button:hover { box-shadow: 0 0 30px rgba(0, 136, 255, 0.4); transform: scale(1.05); color: white;}
+
+        /* ==========================================================================
+           MODALES (FENÊTRES)
+           ========================================================================== */
+        .modal {
+            display: none; position: fixed; z-index: 2000; left: 0; top: 0;
+            width: 100%; height: 100%; background-color: var(--modal-overlay);
+            backdrop-filter: blur(10px); justify-content: center; align-items: center;
+            opacity: 0; transition: opacity 0.3s ease;
+        }
+        .modal.show { display: flex; opacity: 1; }
+        .modal-content {
+            background: var(--modal-bg); padding: 40px 50px; border-radius: 16px;
+            max-width: 850px; width: 95%; max-height: 85vh; overflow-y: auto;
+            position: relative; box-shadow: 0 0 40px rgba(0,0,0,0.2); border: 1px solid var(--border-color);
+            transform: translateY(30px) scale(0.95); transition: all 0.3s ease;
+        }
+        body.dark .modal-content { box-shadow: 0 0 40px rgba(0,0,0,0.6); }
+        .modal.show .modal-content { transform: translateY(0) scale(1); }
+        
+        .modal-content::-webkit-scrollbar { width: 6px; }
+        .modal-content::-webkit-scrollbar-track { background: transparent; }
+        .modal-content::-webkit-scrollbar-thumb { background: #64748b; border-radius: 10px; }
+        
+        .close-btn {
+            position: absolute; top: 20px; right: 25px; color: var(--text-secondary);
+            font-size: 28px; font-weight: 300; cursor: pointer; transition: all 0.2s;
+            width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
+            border-radius: 8px; background: var(--bg-base); border: 1px solid var(--border-color);
+        }
+        .close-btn:hover { color: var(--text-primary); border-color: var(--accent-cyan); box-shadow: 0 0 15px var(--accent-glow);}
+
+        .modal-body h4 { font-size: 1.6rem; margin-bottom: 25px; background: var(--gradient-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 700; letter-spacing: -0.5px; text-transform: uppercase;}
+        .modal-body p { margin-bottom: 15px; color: var(--text-secondary); line-height: 1.8; text-align: justify; font-size: 0.95rem;}
+        .modal-body strong { color: var(--text-primary); font-weight: 600;}
+        .modal-body h5 { font-size: 1.1rem; color: var(--accent-cyan); margin: 25px 0 12px 0; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;}
+        .modal-body ul { margin-left: 20px; margin-bottom: 20px; color: var(--text-secondary); font-size: 0.95rem;}
+        .modal-body li { margin-bottom: 10px; line-height: 1.6;}
+
+        /* Style spécifique pour les petites modales des compétences */
+        .modal-content-small {
+            max-width: 500px;
+            padding: 35px 40px;
+        }
+
+        /* ==========================================================================
+           RESPONSIVE DESIGN
+           ========================================================================== */
+        @media (max-width: 900px) {
+            .hero { flex-direction: column; text-align: center; padding: 40px 20px;}
+            .hero-img-container { width: 100%; max-width: 250px; height: 320px; }
+            .hero-content p { text-align: center; }
+            .projects-grid-3, .projects-grid-2, .split-section, .aptitudes-grid { grid-template-columns: 1fr; }
+            .stage-card { flex-direction: column; text-align: center; gap: 20px; padding: 30px 20px;}
+            .stage-arrow { display: none; }
+        }
+        @media (max-width: 768px) {
+            header { padding: 10px 15px; flex-wrap: wrap; justify-content: center; gap: 10px; border-radius: 20px;}
+            .nav-links { flex-wrap: wrap; justify-content: center; gap: 15px;}
+            .section-title { font-size: 1.8rem; }
+            .modal-content { padding: 30px 20px; }
+        }
+    </style>
+</head>
+<body class="dark">
+
+    <header>
+        <a href="#accueil" class="logo-ah">AH</a>
+        <div class="nav-links">
+            <a href="#projets1">Projets BUT1</a>
+            <a href="#projets2">Projets BUT2</a>
+            <a href="#stage">Stage DSI</a>
+            <a href="#parcours">Parcours</a>
+            <a href="#aptitudes">Compétences</a>
+            <button id="theme-btn" title="Passer en mode clair">☀️</button>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <section id="accueil">
+            <div class="hero">
+                <div class="hero-img-container">
+                    <img src="bitmojiADAM.jpg" alt="Photo de Adam Harrouchi">
+                </div>
+                <div class="hero-content">
+                    <div class="status-badge">Recherche Alternance - Sept. 2026</div>
+                    <h1>Adam Harrouchi</h1>
+                    <p>Je m'appelle <strong>Adam HARROUCHI</strong>, j’ai 19 ans. Actuellement, je suis étudiant en deuxième année de B.U.T. Informatique à l’université Sorbonne Paris Nord<span class="cite-tag">[cite: 59, 61, 68]</span>.</p>
+                    <p>Jusqu’à la fin de mon année de terminale, je ne savais pas vraiment vers quel domaine me diriger. C’est alors que je me suis dit que, même si ce domaine ne me passionnait pas forcément au départ, l’informatique est aujourd’hui présente partout, et elle le sera encore plus à l’avenir. Autrement dit, ce choix me garantit de nombreuses opportunités, car l’informatique fait désormais partie de tous les secteurs<span class="cite-tag">[cite: 9, 10, 11]</span>.</p>
+                    <p>Aujourd’hui, une année après mon admission, je me sens beaucoup plus à l’aise, dans le sens où j’ai acquis une logique informatique qui me permet d’aborder les cours avec plus de confiance. J’ai d’ailleurs eu la chance de développer encore plus cette logique-là via un stage de 8 semaines que j’ai effectué au début du S3, au sein d’une collectivité territoriale, la <strong>mairie de Tremblay-en-France</strong><span class="cite-tag">[cite: 65, 84, 89]</span>.</p>
+                    <p>De plus, grâce à ces deux années de BUT et surtout au stage en entreprise, j’ai une vision assez claire concernant mon projet professionnel : <strong>je voudrais me spécialiser dans le domaine du réseau</strong>, en poursuivant mes études afin d’atteindre le grade d’ingénieur. Cependant, il me reste encore une année. Peut-être que je me tournerai finalement vers le développement<span class="cite-tag">[cite: 52, 53, 54, 55]</span>.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="projets1">
+            <h2 class="section-title">Projets B.U.T. 1</h2>
+            <div class="projects-grid-3">
+                <div class="project-card" onclick="openModal('modal-echecs')">
+                    <img src="plateau.jpg" alt="Plateau d'échecs" class="project-img">
+                    <div class="project-info">
+                        <h3>Création de jeu d'échecs en Java</h3>
+                        <div class="click-hint">Initialisation Système ↗</div>
+                    </div>
+                </div>
+
+                <div class="project-card" onclick="openModal('modal-bdd')">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop" alt="Base de données" class="project-img">
+                    <div class="project-info">
+                        <h3>Base de données</h3>
+                        <div class="click-hint">Ouvrir les archives ↗</div>
+                    </div>
+                </div>
+                
+                <div class="project-card" onclick="openModal('modal-linux')">
+                    <img src="https://images.unsplash.com/photo-1629654297299-c8506221ca97?q=80&w=1974&auto=format&fit=crop" alt="Système Linux Serveur" class="project-img">
+                    <div class="project-info">
+                        <h3>Installation de poste</h3>
+                        <div class="click-hint">Accéder au terminal ↗</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projets2">
+            <h2 class="section-title">Projets B.U.T. 2</h2>
+            <div class="projects-grid-2">
+                <div class="project-card" onclick="openModal('modal-s3')">
+                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop" alt="Projet Web Backend" class="project-img">
+                    <div class="project-info">
+                        <h3>SAÉ S3 : Web App Cohorte Étudiante</h3>
+                        <div class="click-hint">Afficher les logs ↗</div>
+                    </div>
+                </div>
+
+                <div class="project-card" onclick="openModal('modal-s4')">
+                    <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?q=80&w=2070&auto=format&fit=crop" alt="Projet Web UI" class="project-img">
+                    <div class="project-info">
+                        <h3>SAÉ S4 : Refonte Front-end & BDD</h3>
+                        <div class="click-hint">Afficher l'interface ↗</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="stage">
+            <div class="stage-card" onclick="openModal('modal-stage')">
+                <div class="stage-icon">🚀</div>
+                <div class="stage-content">
+                    <h3>Stage DSI - Mairie de Tremblay-en-France</h3>
+                    <h4>Technicien Support & Systèmes (8 semaines)</h4>
+                    <p>Déploiement réseau, gestion de parc via Active Directory, refonte de base de données et projet majeur pour les élections municipales.</p>
+                </div>
+                <div class="stage-arrow">➔</div>
+            </div>
+        </section>
+
+        <section id="parcours">
+            <h2 class="section-title">Formation & Sport</h2>
+            <div class="split-section">
+                <div>
+                    <div class="timeline-card">
+                        <div class="date-badge">2024 - Aujourd'hui</div>
+                        <h3>B.U.T. Informatique</h3>
+                        <h4>IUT Sorbonne Paris Nord</h4>
+                        <p>2ème année (en cours). Parcours <strong>Réalisation d'applications : conception, développement, validation</strong><span class="cite-tag">[cite: 68]</span>.</p>
+                    </div>
+
+                    <div class="timeline-card">
+                        <div class="date-badge">2021 - 2024</div>
+                        <h3>Baccalauréat Général</h3>
+                        <h4>Lycée Voillaume d'Aulnay-sous-Bois</h4>
+                        <p>Obtention du bac avec <strong>mention</strong>. Spécialités <strong>mathématiques et physique-chimie</strong><span class="cite-tag">[cite: 69]</span>.</p>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="timeline-card sport-card">
+                        <div class="date-badge">Depuis 2 ans</div>
+                        <h3>Entraîneur de Tennis</h3>
+                        <h4>Pratique depuis 10 ans</h4>
+                        <p>Mis à part l’informatique, un domaine que j’apprécie est le sport, plus précisément le tennis. C’est un sport que je pratique depuis plus de 10 ans. Après plusieurs années passées au club, on m’a accordé le poste d’entraîneur de jeunes enfants, allant de 3 à 10 ans<span class="cite-tag">[cite: 63, 15, 20, 22]</span>.</p>
+                        <p>Cette expérience en tant qu’entraîneur m’a permis de développer des qualités humaines, telles que la <strong>patience</strong> vis-à-vis des enfants, et aussi des compétences telles que l’<strong>organisation</strong> ou encore la <strong>communication</strong> (vulgarisation des exercices à faire pour une meilleure compréhension)<span class="cite-tag">[cite: 23]</span>.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="aptitudes">
+            <h2 class="section-title">Mes compétences</h2>
+            <div class="aptitudes-grid">
+                
+                <div class="aptitude-box">
+                    <h3>Technologies</h3>
+                    <div class="skills-container">
+                        <a href="javascript:void(0)" onclick="openModal('modal-skill-python')" class="skill-item">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" class="skill-icon"><span class="skill-name">Python</span>
+                        </a>
+                        <a href="javascript:void(0)" onclick="openModal('modal-skill-java')" class="skill-item">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" class="skill-icon"><span class="skill-name">Java</span>
+                        </a>
+                        <a href="javascript:void(0)" onclick="openModal('modal-skill-sql')" class="skill-item">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" class="skill-icon"><span class="skill-name">SQL</span>
+                        </a>
+                        <a href="javascript:void(0)" onclick="openModal('modal-skill-html')" class="skill-item">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" class="skill-icon"><span class="skill-name">HTML</span>
+                        </a>
+                        <a href="javascript:void(0)" onclick="openModal('modal-skill-css')" class="skill-item">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" class="skill-icon"><span class="skill-name">CSS</span>
+                        </a>
+                        <a href="javascript:void(0)" onclick="openModal('modal-skill-js')" class="skill-item">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" class="skill-icon"><span class="skill-name">JavaScript</span>
+                        </a>
+                        <a href="javascript:void(0)" onclick="openModal('modal-skill-bash')" class="skill-item">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg" class="skill-icon"><span class="skill-name">BASH</span>
+                        </a>
+                        <a href="javascript:void(0)" onclick="openModal('modal-skill-c')" class="skill-item">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" class="skill-icon"><span class="skill-name">C</span>
+                        </a>
+                        <a href="javascript:void(0)" onclick="openModal('modal-skill-linux')" class="skill-item">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" class="skill-icon"><span class="skill-name">Linux</span>
+                        </a>
+                        <a href="javascript:void(0)" onclick="openModal('modal-skill-windows')" class="skill-item">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows8/windows8-original.svg" class="skill-icon"><span class="skill-name">Windows</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="aptitude-box">
+                    <h3>Langues</h3>
+                    <div class="lang-list">
+                        <div class="lang-item">
+                            <span class="lang-name">Français</span>
+                            <span class="lang-level">Maternelle</span>
+                        </div>
+                        <div class="lang-item">
+                            <span class="lang-name">Arabe</span>
+                            <span class="lang-level">C1</span>
+                        </div>
+                        <div class="lang-item">
+                            <span class="lang-name">Anglais</span>
+                            <span class="lang-level">B1</span>
+                        </div>
+                        <div class="lang-item">
+                            <span class="lang-name">Espagnol</span>
+                            <span class="lang-level">B1</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contacts" class="contact-section">
+            <h2>Me Contacter</h2>
+            <p>Prêt à échanger sur mes compétences et ma recherche d'alternance ?</p>
+            
+            <div class="contact-links">
+                <a href="mailto:adamharrouchi3@gmail.com">✉️ adamharrouchi3@gmail.com</a>
+                <a href="tel:0618953268">📞 06 18 95 32 68</a>
+                <a href="https://www.linkedin.com/in/adam-harrouchi-ha" target="_blank">💼 LinkedIn</a>
+            </div>
+            
+            <a href="CV_ADAM_HARROUCHI (3).pdf" target="_blank" class="cv-button">Télécharger mon CV</a>
+        </section>
+
+    </div>
+
+    <div id="modal-stage" class="modal" onclick="closeOnBackgroundClick(event, 'modal-stage')">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('modal-stage')">&times;</span>
+            <div class="modal-body">
+                <h4>Stage DSI : Mairie de Tremblay-en-France</h4>
+                <p><strong>Période :</strong> 26 Janvier au 20 Mars 2026 (8 semaines)<span class="cite-tag">[cite: 84]</span>.</p>
+                <p><strong>Poste :</strong> Technicien Informatique au sein de la Direction des Systèmes d'Information<span class="cite-tag">[cite: 96]</span>.</p>
+                
+                <h5>1. Support Utilisateur & Maintenance du Parc</h5>
+                <ul>
+                    <li>Gestion quotidienne des incidents informatiques et centralisation via l'outil <strong>GLPI</strong><span class="cite-tag">[cite: 154, 155]</span>.</li>
+                    <li>Diagnostic physique et résolution de pannes réseaux complexes (remplacement de câblage défectueux, intervention sur des téléphones IP et des baies de brassage)<span class="cite-tag">[cite: 165, 189]</span>.</li>
+                    <li>Réception de matériel, inventaire, et installation de postes de travail pour les agents municipaux<span class="cite-tag">[cite: 168, 170]</span>.</li>
+                </ul>
+
+                <h5>2. Administration Systèmes</h5>
+                <ul>
+                    <li>Administration centralisée via <strong>Active Directory (AD)</strong> : intégration des nouveaux postes dans les bonnes Unités Organisationnelles (OU), gestion des mots de passe et sécurisation des comptes utilisateurs<span class="cite-tag">[cite: 215, 225, 227]</span>.</li>
+                    <li>Gestion des droits d'accès aux fichiers partagés (droits NTFS) pour garantir la sécurité et la confidentialité des données<span class="cite-tag">[cite: 235]</span>.</li>
+                </ul>
+
+                <h5>3. Refonte d'une Base de Données (Microsoft Access)</h5>
+                <ul>
+                    <li>Analyse et correction d'une base de données défectueuse utilisée pour gérer les codes d'alarmes anti-intrusion des bâtiments de la ville<span class="cite-tag">[cite: 251, 255]</span>.</li>
+                    <li>Restructuration des tables relationnelles et réparation des formulaires<span class="cite-tag">[cite: 262]</span>.</li>
+                    <li>Rédaction complète d'une documentation technique à destination des utilisateurs<span class="cite-tag">[cite: 266]</span>.</li>
+                </ul>
+
+                <h5>4. Projet Majeur : Élections Municipales</h5>
+                <ul>
+                    <li><strong>Masterisation en réseau :</strong> Préparation automatisée de PC portables via Boot PXE en utilisant les services WDS et MDT pour le déploiement de Windows 11<span class="cite-tag">[cite: 280, 281]</span>.</li>
+                    <li>Installation complète de l'infrastructure réseau du Bureau Centralisateur (switch, ordinateurs, écrans interactifs)<span class="cite-tag">[cite: 296, 299]</span>.</li>
+                    <li><strong>Projet MDM (Mobile Device Management) :</strong> Configuration centralisée et sécurisée de 45 tablettes numériques pour les nouveaux élus<span class="cite-tag">[cite: 308, 309]</span>.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-echecs" class="modal" onclick="closeOnBackgroundClick(event, 'modal-echecs')">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('modal-echecs')">&times;</span>
+            <div class="modal-body">
+                <h4>Projet : Création d'un Jeu d'Échecs</h4>
+                <p><strong>Contexte :</strong> Projet de programmation orientée objet (POO) réalisé lors de ma première année de B.U.T Informatique.</p>
+                <p><strong>Objectif :</strong> Concevoir et développer un jeu d'échecs fonctionnel en ligne de commande (terminal Linux), jouable à deux joueurs en local.</p>
+                <p><strong>Outils et Technologies :</strong> Java, Programmation Orientée Objet, Terminal Linux.</p>
+                <h5>Mes réalisations clés :</h5>
+                <ul>
+                    <li><strong>Logique métier :</strong> Implémentation stricte de toutes les règles officielles du jeu d'échecs (déplacements spécifiques de chaque pièce, captures, échec).</li>
+                    <li><strong>Architecture :</strong> Structuration du code en classes et héritage pour un code propre et maintenable.</li>
+                    <li><strong>Interface :</strong> Affichage de l'échiquier dynamique directement dans le terminal.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-bdd" class="modal" onclick="closeOnBackgroundClick(event, 'modal-bdd')">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('modal-bdd')">&times;</span>
+            <div class="modal-body">
+                <h4>Projet : Modélisation et Intégration d'une Base de Données sur les Catastrophes Climatiques</h4>
+                <p><strong>Contexte :</strong> Projet réalisé dans le cadre de la SAÉ Base de Données (BUT1 Informatique).</p>
+                <p><strong>Objectif :</strong> Concevoir, déployer et peupler une base de données relationnelle permettant d'analyser la fréquence et l'impact des catastrophes climatiques à l'échelle mondiale.</p>
+                <p><strong>Outils et Technologies :</strong> SQL (PostgreSQL, MySQL), MySQL Workbench (AGL), modélisation relationnelle, processus ETL.</p>
+                <h5>Mes réalisations clés :</h5>
+                <ul>
+                    <li><strong>Conception et Modélisation :</strong> Création de l'architecture relationnelle de la base autour de 5 tables principales connectées.</li>
+                    <li><strong>Analyse comparative :</strong> Étude critique des différences d'implémentation (contraintes, encodage, portabilité) entre des scripts SQL produits manuellement et ceux générés automatiquement par l'AGL.</li>
+                    <li><strong>Pipeline ETL (Extract, Transform, Load) :</strong> Importation de données brutes depuis un fichier CSV vers une table de transition sous PostgreSQL via la commande <code>\copy</code>.</li>
+                    <li><strong>Nettoyage et Intégration :</strong> Peuplement sécurisé des tables finales avec plus de 6 400 enregistrements tout en garantissant l'intégrité référentielle et l'élimination des doublons via des requêtes <code>INSERT INTO ... SELECT DISTINCT</code>.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-linux" class="modal" onclick="closeOnBackgroundClick(event, 'modal-linux')">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('modal-linux')">&times;</span>
+            <div class="modal-body">
+                <h4>Projet : Installation de poste informatique</h4>
+                <p><strong>Objectif :</strong> Préparer, installer et configurer un ordinateur sous Linux de A à Z.</p>
+                <p><strong>Outils et Technologies :</strong> Linux (Ubuntu/Xubuntu), Ligne de commande (Bash), Gestion de disques.</p>
+                <h5>Mes réalisations clés :</h5>
+                <ul>
+                    <li><strong>Préparation du matériel :</strong> Création de clés USB d'installation et nettoyage des disques durs via la ligne de commande.</li>
+                    <li><strong>Installation du système :</strong> Choix de la version de Linux la plus adaptée à la puissance de l'ordinateur (ex: Xubuntu pour les machines plus anciennes).</li>
+                    <li><strong>Sécurité et administration :</strong> Gestion des permissions et des comptes utilisateurs (utilisation de root et sudo) pour sécuriser l'ordinateur.</li>
+                    <li><strong>Maintenance :</strong> Manipulation de l'arborescence des dossiers et sauvegarde de fichiers via le terminal.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-s3" class="modal" onclick="closeOnBackgroundClick(event, 'modal-s3')">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('modal-s3')">&times;</span>
+            <div class="modal-body">
+                <h4>SAÉ S3 : Suivi d'une cohorte d'étudiants</h4>
+                <p><strong>Contexte :</strong> En équipe de 5, nous avions comme projet universitaire de réaliser une application web qui permet de suivre une cohorte d’étudiants.</p>
+                <p><strong>Définition :</strong> Une application web destinée à agréger, gérer et visualiser les données de progression d'un groupe d'étudiants sur l'ensemble de leur cursus BUT.</p>
+                <h5>Mon rôle et mes missions :</h5>
+                <ul>
+                    <li>Chacun des membres du groupe avait une tâche spécifique à réaliser seul de son côté. Ma tâche principale durant cette SAE a été de coder l'architecture interne du site.</li>
+                    <li><strong>Backend & Modèle MVC :</strong> J'ai utilisé le framework Python Flask, en structurant l'application selon le modèle MVC (Modèle-Vue-Contrôleur). Je me suis occupé de toute la partie <strong>Modèle</strong>, avec le codage de toutes les interfaces et tous les DAO.</li>
+                    <li><strong>Lien BDD-Site :</strong> Cette partie est sans doute l’une des plus importantes, car c’est dans celle-ci qu’on fait le lien direct entre la base de données et l'interface du site.</li>
+                    <li><strong>Compétences acquises :</strong> Le codage de cette partie m’a permis de comprendre l'architecture logicielle globale, d'apprendre à manipuler rigoureusement le modèle MVC, et de renforcer mes compétences en programmation orientée objet avec Python. Une fois mon travail terminé, je l'ai présenté et expliqué au reste de l'équipe.</li>
+                </ul>
+                <h5>Base de données :</h5>
+                <ul>
+                    <li>Une autre partie dans laquelle je suis intervenu est la conception et l'écriture du script de la base de données. J'y ai acquis des compétences techniques solides en SQL, ainsi que des compétences transversales (travail d'équipe, synchronisation des données).</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-s4" class="modal" onclick="closeOnBackgroundClick(event, 'modal-s4')">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('modal-s4')">&times;</span>
+            <div class="modal-body">
+                <h4>SAÉ S4 : Évolution de l'application de cohorte</h4>
+                <p><strong>Contexte :</strong> Pour le S4, il nous a été demandé de choisir un projet existant et de l'améliorer en profondeur. Nous avons choisi de poursuivre l'évolution de notre propre projet du S3.</p>
+                <h5>Optimisation de la Base de Données :</h5>
+                <ul>
+                    <li>Nous avons repensé et modifié l'intégralité du script SQL. Pour construire la meilleure architecture possible, nous avons pioché dans tous les autres projets de la promotion pour consolider une base de données robuste et très performante.</li>
+                </ul>
+                <h5>Mon rôle spécifique (Front-end) :</h5>
+                <ul>
+                    <li>Si j'avais traité le backend et les DAO au S3, j'ai décidé de prendre en charge la partie visuelle et interface utilisateur (Front-end) pour le S4.</li>
+                    <li><strong>Refonte visuelle :</strong> J'ai entièrement "changé la gueule du site", en travaillant sur l'ergonomie, le design (HTML/CSS), et l'expérience utilisateur pour rendre la plateforme intuitive pour les administrateurs pédagogiques.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-skill-python" class="modal" onclick="closeOnBackgroundClick(event, 'modal-skill-python')">
+        <div class="modal-content modal-content-small">
+            <span class="close-btn" onclick="closeModal('modal-skill-python')">&times;</span>
+            <div class="modal-body">
+                <h4><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" style="width: 28px; margin-right: 10px; vertical-align: middle;"> Python</h4>
+                <p>J'ai principalement utilisé Python lors du développement de notre application web en <strong>SAÉ S3 et S4</strong>.</p>
+                <p>Il m'a servi à concevoir toute la logique backend avec le framework <strong>Flask</strong> (modèle MVC), à implémenter les DAO (Data Access Object) et à automatiser l'importation de données massives (scripts de traitement ETL depuis des fichiers JSON).</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-skill-java" class="modal" onclick="closeOnBackgroundClick(event, 'modal-skill-java')">
+        <div class="modal-content modal-content-small">
+            <span class="close-btn" onclick="closeModal('modal-skill-java')">&times;</span>
+            <div class="modal-body">
+                <h4><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" style="width: 28px; margin-right: 10px; vertical-align: middle;"> Java</h4>
+                <p>Ce langage orienté objet a été au cœur de mon projet de création d'un <strong>jeu d'échecs</strong> lors du B.U.T 1.</p>
+                <p>J'y ai modélisé les règles strictes du jeu, géré l'héritage des pièces (Pion, Cavalier, Roi...) et conçu la logique globale des déplacements pour une interface jouable directement sur le terminal.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-skill-sql" class="modal" onclick="closeOnBackgroundClick(event, 'modal-skill-sql')">
+        <div class="modal-content modal-content-small">
+            <span class="close-btn" onclick="closeModal('modal-skill-sql')">&times;</span>
+            <div class="modal-body">
+                <h4><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" style="width: 28px; margin-right: 10px; vertical-align: middle;"> SQL</h4>
+                <p>J'ai manipulé SQL (PostgreSQL, MySQL) de manière approfondie à travers plusieurs projets universitaires.</p>
+                <p>Je l'ai notamment utilisé pour la modélisation de la base de données des catastrophes climatiques (B.U.T 1) et pour l'architecture complexe de l'application de suivi d'étudiants (<strong>SAÉ S3/S4</strong>), avec l'écriture de requêtes, d'insertions sécurisées et de jointures optimisées.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-skill-html" class="modal" onclick="closeOnBackgroundClick(event, 'modal-skill-html')">
+        <div class="modal-content modal-content-small">
+            <span class="close-btn" onclick="closeModal('modal-skill-html')">&times;</span>
+            <div class="modal-body">
+                <h4><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" style="width: 28px; margin-right: 10px; vertical-align: middle;"> HTML</h4>
+                <p>Le langage HTML a été la fondation de l'interface graphique de notre application web lors des <strong>SAÉ S3 et S4</strong>.</p>
+                <p>Il m'a permis de structurer la plateforme de suivi étudiant en intégrant différents gabarits de pages (Jinja2 sous Flask) pour rendre l'interface robuste et sémantique pour les utilisateurs.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-skill-css" class="modal" onclick="closeOnBackgroundClick(event, 'modal-skill-css')">
+        <div class="modal-content modal-content-small">
+            <span class="close-btn" onclick="closeModal('modal-skill-css')">&times;</span>
+            <div class="modal-body">
+                <h4><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" style="width: 28px; margin-right: 10px; vertical-align: middle;"> CSS</h4>
+                <p>J'ai utilisé CSS pour concevoir toute l'identité visuelle de l'application web au semestre 4 (<strong>SAÉ S4</strong>).</p>
+                <p>En prenant en charge le Front-end du projet, j'ai entièrement repensé l'ergonomie, le design global et l'expérience utilisateur du site pour le rendre attractif et intuitif.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-skill-js" class="modal" onclick="closeOnBackgroundClick(event, 'modal-skill-js')">
+        <div class="modal-content modal-content-small">
+            <span class="close-btn" onclick="closeModal('modal-skill-js')">&times;</span>
+            <div class="modal-body">
+                <h4><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" style="width: 28px; margin-right: 10px; vertical-align: middle;"> JavaScript</h4>
+                <p>J'ai implémenté du JavaScript lors du développement de notre application web (<strong>SAÉ S3 et S4</strong>) pour dynamiser les vues côté client.</p>
+                <p>Il a été particulièrement utile pour intégrer et faire fonctionner des composants interactifs, comme les diagrammes de Sankey, permettant de visualiser clairement la progression des cohortes d'étudiants.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-skill-bash" class="modal" onclick="closeOnBackgroundClick(event, 'modal-skill-bash')">
+        <div class="modal-content modal-content-small">
+            <span class="close-btn" onclick="closeModal('modal-skill-bash')">&times;</span>
+            <div class="modal-body">
+                <h4><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg" style="width: 28px; margin-right: 10px; vertical-align: middle;"> BASH</h4>
+                <p>Très utile en administration système, j'ai manipulé les scripts et la ligne de commande Bash lors de mon projet <strong>d'installation de poste sous Linux</strong>.</p>
+                <p>Cela m'a permis d'interagir directement avec le noyau, de préparer les disques durs d'installation, de nettoyer l'arborescence et de gérer de façon sécurisée les permissions utilisateurs via le terminal.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-skill-c" class="modal" onclick="closeOnBackgroundClick(event, 'modal-skill-c')">
+        <div class="modal-content modal-content-small">
+            <span class="close-btn" onclick="closeModal('modal-skill-c')">&times;</span>
+            <div class="modal-body">
+                <h4><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" style="width: 28px; margin-right: 10px; vertical-align: middle;"> C</h4>
+                <p>J'ai appris les fondamentaux du langage C lors de mes cours universitaires en B.U.T Informatique.</p>
+                <p>Bien que je ne l'aie pas encore exploité dans le cadre d'un grand projet personnel, sa maîtrise a été indispensable pour bien comprendre le fonctionnement bas niveau de la mémoire (les pointeurs, l'allocation dynamique) et forger ma logique algorithmique.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-skill-linux" class="modal" onclick="closeOnBackgroundClick(event, 'modal-skill-linux')">
+        <div class="modal-content modal-content-small">
+            <span class="close-btn" onclick="closeModal('modal-skill-linux')">&times;</span>
+            <div class="modal-body">
+                <h4><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" style="width: 28px; margin-right: 10px; vertical-align: middle;"> Linux</h4>
+                <p>C'est un système d'exploitation que j'ai largement exploité lors de mon projet de <strong>déploiement de serveur</strong> (installation d'un poste de A à Z avec Ubuntu/Xubuntu).</p>
+                <p>Je maîtrise l'installation de ce système, la configuration des services de base, et la sécurisation de l'environnement de développement pour des applications complexes.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-skill-windows" class="modal" onclick="closeOnBackgroundClick(event, 'modal-skill-windows')">
+        <div class="modal-content modal-content-small">
+            <span class="close-btn" onclick="closeModal('modal-skill-windows')">&times;</span>
+            <div class="modal-body">
+                <h4><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows8/windows8-original.svg" style="width: 28px; margin-right: 10px; vertical-align: middle;"> Windows</h4>
+                <p>J'ai travaillé en profondeur sur l'administration d'environnements Windows (Systèmes et Serveurs) lors de <strong>mon stage à la DSI de Tremblay-en-France</strong>.</p>
+                <p>J'y ai notamment géré des infrastructures centralisées via l'<strong>Active Directory</strong> et effectué des masterisations massives de postes de travail en réseau grâce aux outils WDS et MDT pour le déploiement de Windows 11.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // GESTION DU MODE SOMBRE / CLAIR
+        const themeBtn = document.getElementById('theme-btn');
+        themeBtn.addEventListener('click', () => {
+            document.body.classList.toggle('dark');
+            if(document.body.classList.contains('dark')) {
+                themeBtn.textContent = '☀️';
+                themeBtn.setAttribute('title', 'Activer le mode clair');
+            } else {
+                themeBtn.textContent = '🌙';
+                themeBtn.setAttribute('title', 'Activer le mode sombre');
+            }
+        });
+
+        // GESTION DES MODALES
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.add("show");
+            document.body.style.overflow = "hidden"; 
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove("show");
+            document.body.style.overflow = "auto"; 
+        }
+
+        function closeOnBackgroundClick(event, modalId) {
+            var modal = document.getElementById(modalId);
+            if (event.target === modal) {
+                closeModal(modalId);
+            }
+        }
+    </script>
+</body>
+</html>
