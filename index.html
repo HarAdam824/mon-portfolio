@@ -172,7 +172,7 @@
             margin-bottom: 15px; color: var(--text-primary); text-transform: uppercase;
         }
         .hero-content p {
-            font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 12px;
+            font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 15px;
             text-align: justify;
         }
         .hero-content strong { color: var(--text-primary); font-weight: 600; }
@@ -393,7 +393,7 @@
         <div class="nav-links">
             <a href="#projets1">Projets BUT1</a>
             <a href="#projets2">Projets BUT2</a>
-            <a href="#stage">Stage DSI</a>
+            <a href="#stage">Stage</a>
             <a href="#parcours">Parcours</a>
             <a href="#aptitudes">Compétences</a>
             <button id="theme-btn" title="Passer en mode clair">☀️</button>
@@ -404,16 +404,17 @@
         
         <section id="accueil">
             <div class="hero">
-                <div class="hero-img-container">
-                    <img src="bitmojiADAM.jpg" alt="Photo de Adam Harrouchi">
-                </div>
                 <div class="hero-content">
-                    <div class="status-badge">Recherche Alternance - Sept. 2026</div>
-                    <h1>Adam Harrouchi</h1>
+                    <div style="text-align: center;">
+                        <div class="status-badge">Recherche Alternance - Sept. 2026</div>
+                        <h1>Adam Harrouchi</h1>
+                    </div>
                     <p>Je m'appelle <strong>Adam HARROUCHI</strong>, j’ai 19 ans. Actuellement, je suis étudiant en deuxième année de B.U.T. Informatique à l’université Sorbonne Paris Nord<span class="cite-tag">[cite: 4]</span>.</p>
                     <p>Jusqu’à la fin de mon année de terminale, je ne savais pas vraiment vers quel domaine me diriger. C’est alors que je me suis dit que, même si ce domaine ne me passionnait pas forcément au départ, l’informatique est aujourd’hui présente partout, et elle le sera encore plus à l’avenir. Autrement dit, ce choix me garantit de nombreuses opportunités, car l’informatique fait désormais partie de tous les secteurs<span class="cite-tag">[cite: 4]</span>.</p>
-                    <p>Aujourd’hui, une année après mon admission, je me sens beaucoup plus à l’aise, dans le sens où j’ai acquis une logique informatique qui me permet d’aborder les cours avec plus de confiance. J’ai d’ailleurs eu la chance de développer encore plus cette logique-là via un stage de 8 semaines que j’ai effectué au début du S3, au sein d’une collectivité territoriale, la <strong>mairie de Tremblay-en-France</strong><span class="cite-tag">[cite: 3]</span>.</p>
-                    <p>Concernant mes objectifs, ma priorité à court terme est de décrocher une alternance (rythme 2 semaines / 2 semaines) dès septembre 2026 pour valider ma troisième année de B.U.T<span class="cite-tag">[cite: 1]</span>. À moyen terme, j'ambitionne de poursuivre mes études en école d'ingénieurs, toujours par la voie de l'apprentissage, afin de consolider mon expertise technique. Enfin, à long terme (d'ici 10 à 15 ans), je me projette en tant qu'Ingénieur ou Architecte Réseaux. Mon but est de concevoir et de piloter des infrastructures complexes et sécurisées à grande échelle, en m'appuyant sur la rigueur et le sens du service que j'ai pu forger sur le terrain.</p>
+                    <p>Aujourd’hui, une année après mon admission, je me sens beaucoup plus à l’aise, dans le sens où j’ai acquis une logique informatique qui me permet d’aborder les cours avec plus de confiance. J’ai d’ailleurs eu la chance de développer encore plus cette logique-là via un stage de 8 semaines que j’ai effectué au début du S3, au sein d’une collectivité territoriale, la <strong>mairie de Tremblay-en-France</strong><span class="cite-tag">[cite: 4]</span>.</p>
+                    <p>D'un point de vue personnel, je me définis comme quelqu'un de pratique, de fiable et de prudent. Face à un nouveau concept informatique ou un algorithme, je privilégie toujours l'apprentissage par la pratique : j'ai besoin de traduire rapidement une idée théorique en un script concret pour en saisir la portée. Avant d'écrire la moindre ligne de code, je prends le soin de structurer l'architecture globale et d'anticiper les éventuels problèmes. Cette circonspection se reflète également dans mon travail en équipe, où je prends souvent l'initiative de planifier et de fixer les jalons du projet.</p>
+                    <p>De nature posée et sociable, j'attache une grande importance à l'observation et à la cohésion de groupe. Lors de mon stage à la mairie de Tremblay-en-France, cette approche m'a permis de m'intégrer rapidement en comprenant la circulation de l'information au sein de l'équipe. Je suis un collaborateur sincère et coopérant : pour moi, l'esprit d'équipe consiste à avancer au même rythme, n'hésitant jamais à mobiliser le groupe pour aider un collègue en difficulté. Enfin, face à l'urgence (comme lors de la réparation critique d'une base de données gérant les alarmes anti-intrusion de la ville) je reste calme et détendu. Je compartimente les problèmes pour travailler à mon rythme, une stratégie de concentration qui me garantit de livrer un travail fonctionnel et qualitatif dans les délais impartis.</p>
+                    <p>Concernant mes objectifs, ma priorité à court terme est de décrocher une alternance (rythme 2 semaines / 2 semaines) dès septembre 2026 pour valider ma troisième année de B.U.T. À moyen terme, j'ambitionne de poursuivre mes études en école d'ingénieurs, toujours par la voie de l'apprentissage, afin de consolider mon expertise technique. Enfin, à long terme (d'ici 10 à 15 ans), je me projette en tant qu'Ingénieur ou Architecte Réseaux. Mon but est de concevoir et de piloter des infrastructures complexes et sécurisées à grande échelle, en m'appuyant sur la rigueur et le sens du service que j'ai pu forger sur le terrain.</p>
                 </div>
             </div>
         </section>
@@ -512,11 +513,14 @@
         </section>
 
         <section id="aptitudes">
-            <h2 class="section-title">Matrice de Compétences</h2>
+            <h2 class="section-title">Mes compétences</h2>
             <div class="aptitudes-grid">
                 
                 <div class="aptitude-box">
                     <h3>Technologies</h3>
+                    <p style="text-align: center; color: var(--text-secondary); margin-bottom: 20px; font-size: 0.85rem;">
+                        Cliquez sur une technologie pour voir où je l'ai utilisée en projet.
+                    </p>
                     <div class="skills-container">
                         <a href="javascript:void(0)" onclick="openModal('modal-skill-python')" class="skill-item">
                             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" class="skill-icon"><span class="skill-name">Python</span>
@@ -599,45 +603,43 @@
             <span class="close-btn" onclick="closeModal('modal-stage')">&times;</span>
             <div class="modal-body">
                 <h4>Stage DSI : Mairie de Tremblay-en-France</h4>
-                <p><strong>Période :</strong> 26 Janvier au 20 Mars 2026 (8 semaines)<span class="cite-tag">[cite: 3]</span>.</p>
-                <p><strong>Poste :</strong> Technicien Informatique au sein de la Direction des Systèmes d'Information<span class="cite-tag">[cite: 3]</span>.</p>
+                <p><strong>Période :</strong> 26 Janvier au 20 Mars 2026 (8 semaines)<span class="cite-tag">[cite: 4]</span>.</p>
+                <p><strong>Poste :</strong> Technicien Informatique au sein de la Direction des Systèmes d'Information<span class="cite-tag">[cite: 4]</span>.</p>
                 
                 <h5 style="color: var(--accent-purple); border-bottom: 1px solid var(--border-color); padding-bottom: 5px; margin-top: 20px;">Validation des compétences du B.U.T</h5>
                 
                 <p><strong>Compétence : Administrer des systèmes informatiques communicants complexes</strong><br>
-                Durant mon stage, j'ai activement participé au maintien en condition opérationnelle du parc informatique<span class="cite-tag">[cite: 3]</span>. J'ai géré les utilisateurs et les stratégies de sécurité via l'Active Directory, diagnostiqué des pannes réseaux physiques et logiques, et administré le déploiement centralisé de machines via les outils WDS et MDT lors de la préparation des élections municipales<span class="cite-tag">[cite: 3]</span>.</p>
+                Durant mon stage, j'ai activement participé au maintien en condition opérationnelle du parc informatique<span class="cite-tag">[cite: 4]</span>. J'ai géré les utilisateurs et les stratégies de sécurité via l'Active Directory, diagnostiqué des pannes réseaux physiques et logiques, et administré le déploiement centralisé de machines via les outils WDS et MDT lors de la préparation des élections municipales<span class="cite-tag">[cite: 4]</span>.</p>
                 
                 <p><strong>Compétence : Gérer des données de l'information</strong><br>
-                J'ai mobilisé cette compétence lors de la refonte totale d'une base de données Microsoft Access défectueuse exploitée par un service de la mairie<span class="cite-tag">[cite: 3]</span>. J'ai dû mener un travail d'analyse pour restructurer les tables relationnelles, rétablir l'intégrité des données, corriger les requêtes des formulaires et produire une documentation technique assurant la pérennité de la solution<span class="cite-tag">[cite: 3]</span>.</p>
+                J'ai mobilisé cette compétence lors de la refonte totale d'une base de données Microsoft Access défectueuse exploitée par un service de la mairie<span class="cite-tag">[cite: 4]</span>. J'ai dû mener un travail d'analyse pour restructurer les tables relationnelles, rétablir l'intégrité des données, corriger les requêtes des formulaires et produire une documentation technique assurant la pérennité de la solution<span class="cite-tag">[cite: 4]</span>.</p>
 
                 <h5 style="margin-top: 30px;">1. Support Utilisateur & Maintenance du Parc</h5>
                 <ul>
-                    <li>Gestion quotidienne des incidents informatiques et centralisation via l'outil <strong>GLPI</strong><span class="cite-tag">[cite: 3]</span>.</li>
-                    <li>Diagnostic physique et résolution de pannes réseaux complexes (remplacement de câblage défectueux, intervention sur des téléphones IP et des baies de brassage)<span class="cite-tag">[cite: 3]</span>.</li>
-                    <li>Réception de matériel, inventaire, et installation de postes de travail pour les agents municipaux<span class="cite-tag">[cite: 3]</span>.</li>
+                    <li>Gestion quotidienne des incidents informatiques et centralisation via l'outil <strong>GLPI</strong><span class="cite-tag">[cite: 4]</span>.</li>
+                    <li>Diagnostic physique et résolution de pannes réseaux complexes (remplacement de câblage défectueux, intervention sur des téléphones IP et des baies de brassage)<span class="cite-tag">[cite: 4]</span>.</li>
+                    <li>Réception de matériel, inventaire, et installation de postes de travail pour les agents municipaux<span class="cite-tag">[cite: 4]</span>.</li>
                 </ul>
 
                 <h5>2. Administration Systèmes</h5>
                 <ul>
-                    <li>Administration centralisée via <strong>Active Directory (AD)</strong> : intégration des nouveaux postes dans les bonnes Unités Organisationnelles (OU), gestion des mots de passe et sécurisation des comptes utilisateurs<span class="cite-tag">[cite: 3]</span>.</li>
-                    <li>Gestion des droits d'accès aux fichiers partagés (droits NTFS) pour garantir la sécurité et la confidentialité des données<span class="cite-tag">[cite: 3]</span>.</li>
+                    <li>Administration centralisée via <strong>Active Directory (AD)</strong> : intégration des nouveaux postes dans les bonnes Unités Organisationnelles (OU), gestion des mots de passe et sécurisation des comptes utilisateurs<span class="cite-tag">[cite: 4]</span>.</li>
+                    <li>Gestion des droits d'accès aux fichiers partagés (droits NTFS) pour garantir la sécurité et la confidentialité des données<span class="cite-tag">[cite: 4]</span>.</li>
                 </ul>
 
                 <h5>3. Refonte d'une Base de Données (Microsoft Access)</h5>
                 <ul>
-                    <li>Analyse et correction d'une base de données défectueuse utilisée pour gérer les codes d'alarmes anti-intrusion des bâtiments de la ville<span class="cite-tag">[cite: 3]</span>.</li>
-                    <li>Restructuration des tables relationnelles et réparation des formulaires<span class="cite-tag">[cite: 3]</span>.</li>
-                    <li>Rédaction complète d'une documentation technique à destination des utilisateurs<span class="cite-tag">[cite: 3]</span>.</li>
+                    <li>Analyse et correction d'une base de données défectueuse utilisée pour gérer les codes d'alarmes anti-intrusion des bâtiments de la ville<span class="cite-tag">[cite: 4]</span>.</li>
+                    <li>Restructuration des tables relationnelles et réparation des formulaires<span class="cite-tag">[cite: 4]</span>.</li>
+                    <li>Rédaction complète d'une documentation technique à destination des utilisateurs<span class="cite-tag">[cite: 4]</span>.</li>
                 </ul>
 
                 <h5>4. Projet Majeur : Élections Municipales</h5>
                 <ul>
-                    <li><strong>Masterisation en réseau :</strong> Préparation automatisée de PC portables via Boot PXE en utilisant les services WDS et MDT pour le déploiement de Windows 11<span class="cite-tag">[cite: 3]</span>.</li>
-                    <li>Installation complète de l'infrastructure réseau du Bureau Centralisateur (switch, ordinateurs, écrans interactifs)<span class="cite-tag">[cite: 3]</span>.</li>
-                    <li><strong>Projet MDM (Mobile Device Management) :</strong> Configuration centralisée et sécurisée de 45 tablettes numériques pour les nouveaux élus<span class="cite-tag">[cite: 3]</span>.</li>
+                    <li><strong>Masterisation en réseau :</strong> Préparation automatisée de PC portables via Boot PXE en utilisant les services WDS et MDT pour le déploiement de Windows 11<span class="cite-tag">[cite: 4]</span>.</li>
+                    <li>Installation complète de l'infrastructure réseau du Bureau Centralisateur (switch, ordinateurs, écrans interactifs)<span class="cite-tag">[cite: 4]</span>.</li>
+                    <li><strong>Projet MDM (Mobile Device Management) :</strong> Configuration centralisée et sécurisée de 45 tablettes numériques pour les nouveaux élus<span class="cite-tag">[cite: 4]</span>.</li>
                 </ul>
-                <h5>5. Découverte du monde professionnel & Posture critique</h5>
-                <p>Ce stage m'a fait prendre conscience de la réalité du terrain au sein d'une DSI. J'ai découvert l'importance cruciale de la <strong>vulgarisation informatique</strong> : face à des agents municipaux ou des élus parfois dépassés par la technologie, j'ai dû adapter mon langage pour expliquer mes interventions sans jargonner. De plus, la gestion des urgences et des tickets d'incidents (via GLPI) m'a appris à hiérarchiser mes tâches et à travailler avec une méthodologie rigoureuse.</p>
             </div>
         </div>
     </div>
@@ -724,15 +726,19 @@
             <span class="close-btn" onclick="closeModal('modal-s4')">&times;</span>
             <div class="modal-body">
                 <h4>SAÉ S4 : Évolution de l'application de cohorte</h4>
-                <p><strong>Contexte :</strong> Pour le S4, il nous a été demandé de choisir un projet existant et de l'améliorer en profondeur. Nous avons choisi de poursuivre l'évolution de notre propre projet du S3<span class="cite-tag">[cite: 4]</span>.</p>
-                <h5>Optimisation de la Base de Données :</h5>
+                
+                <p><strong>Contexte et Consignes :</strong> Lors du S4, notre projet consistait à repartir d'un projet du S3 (de n'importe quel groupe de la classe) afin de l'améliorer. Pour ce faire, il a d'abord fallu élaborer différents critères d'analyse pour évaluer les points forts et les faiblesses de chaque projet afin de faire le choix final.</p>
+
+                <h5>Mes rôles et missions :</h5>
                 <ul>
-                    <li>Nous avons repensé et modifié l'intégralité du script SQL. Pour construire la meilleure architecture possible, nous avons pioché dans tous les autres projets de la promotion pour consolider une base de données robuste et très performante<span class="cite-tag">[cite: 4]</span>.</li>
+                    <li><strong>Refonte du Front-end :</strong> Je me suis occupé de l'interface visuelle car la version initiale était un peu trop lourde. Pour l'optimiser, j'ai analysé les projets des autres groupes et m'en suis inspiré pour concevoir et rendre une meilleure version.</li>
+                    <li><strong>Optimisation de la Base de données :</strong> C'était l'un des points d'amélioration majeurs relevés lors de nos analyses. J'ai aidé à la modification du script SQL en m'intéressant aux bases de données de tous les autres groupes pour en tirer le meilleur. Cela nous a permis de livrer une base complète, fonctionnelle et propre.</li>
                 </ul>
-                <h5>Mon rôle spécifique (Front-end) :</h5>
+
+                <h5>Bilan et Compétences développées :</h5>
                 <ul>
-                    <li>Si j'avais traité le backend et les DAO au S3, j'ai décidé de prendre en charge la partie visuelle et interface utilisateur (Front-end) pour le S4<span class="cite-tag">[cite: 4]</span>.</li>
-                    <li><strong>Refonte visuelle :</strong> J'ai changé le visuel du site, en travaillant sur l'ergonomie, le design (HTML/CSS), et l'expérience utilisateur pour rendre la plateforme intuitive pour les administrateurs pédagogiques.<span class="cite-tag">[cite: 4]</span>.</li>
+                    <li><strong>Esprit d'analyse et critique :</strong> Le travail réalisé lors du S4 a été un véritable travail d'analyse.</li>
+                    <li><strong>Prise de recul :</strong> Ce projet m'a appris à évaluer objectivement une application existante afin de l'optimiser et d'en extraire le meilleur. J'ai ainsi pu consolider mes acquis techniques du S3 tout en continuant à développer d'autres compétences (analyse, etc).</li>
                 </ul>
             </div>
         </div>
